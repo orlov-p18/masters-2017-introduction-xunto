@@ -1,1 +1,1 @@
-Address: https://xunto.moodlecloud.com
+https://xunto.moodlecloud.com
