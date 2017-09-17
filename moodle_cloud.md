@@ -1,1 +1,1 @@
-Address: [](https://xunto.moodlecloud.com)
+Address: https://xunto.moodlecloud.com
