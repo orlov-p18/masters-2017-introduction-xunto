@@ -21,6 +21,9 @@
             <item identifier="org_item1" identifierref="hello_world" isvisible="true">
                 <title>Hello world</title>
             </item>
+            <item identifier="org_item2" identifierref="hello_test" isvisible="true">
+                <title>Hello test</title>
+            </item>
         </organization>
     </organizations>
     <resources>
@@ -30,6 +33,13 @@
         </resource>
         <resource identifier="resources" type="webcontent" adlcp:scormType="sco">
             <file href="images/image.png"/>
+        </resource>
+        <resource identifier="hello_test" type="webcontent" adlcp:scormType="sco" href="hello_test.html">
+            <file href="hello_test.html"/>
+            <dependency identifierref="js"/>
+        </resource>
+        <resource identifier="js" type="webcontent" adlcp:scormType="sco">
+            <file href="js/SCORM_API_wrapper.js"/>
         </resource>
     </resources>
 </manifest>
