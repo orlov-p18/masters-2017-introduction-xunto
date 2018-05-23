@@ -1,0 +1,46 @@
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>Hello world</title>
+</head>
+<body>
+<h1>Для теста</h1>
+<h2>Test?</h2>
+<select id="tests" value="test1">
+    <option value="test1">test1</option>
+    <option value="test2">test2</option>
+    <option value="test3">test3</option>
+    <option value="test4">test4</option>
+</select> 
+<input id="submit" type="submit" />
+<script src="js/SCORM_API_wrapper.js" ></script>
+<script>
+var sco = pipwerks.SCORM;
+
+function onAnswer(answer) {
+    if (answer == "test3") {
+        sco.init()
+        sco.set("cmi.completed", true);
+        sco.set("cmi.completion_status", "completed");
+        sco.set("cmi.success_status", "passed");
+        sco.save();
+        alert("Молодец, " + sco.get("cmi.learner_name"));
+        sco.quit();
+    } else {
+        alert("Неправильный ответ!");
+    }
+}
+
+function init() {
+    var submit = document.querySelector("#submit");
+    var tests = document.querySelector("#tests");
+
+    submit.addEventListener("click", function() {
+        onAnswer(tests.value);
+    })
+}
+
+init()
+</script>
+</body>
+</html>
