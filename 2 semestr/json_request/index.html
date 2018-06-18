@@ -13,40 +13,31 @@
             var table = document.querySelector('#table');
             var message_div = document.querySelector('#message');
 
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://kodaktor.ru/j/users', true);
-            xhr.send();
+          fetch('https://kodaktor.ru/j/users').then(function(response) {
+            return response.json();
+          }).then(function(result) {
+            for (var i = 0; i < result["users"].length; i++) {
+              var user = result["users"][i];
 
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState != 4) return;
+              var tr = document.createElement('tr');
 
-                if (xhr.status == 200) {
-                    result = JSON.parse(xhr.responseText);
-                    for (var i = 0; i < result["users"].length; i++) {
-                        var user = result["users"][i];
+              var login = document.createElement('td');
+              login.appendChild(
+                document.createTextNode(user["login"])
+              );
 
-                        var tr = document.createElement('tr');
+              var password = document.createElement('td');
+              password.appendChild(
+                document.createTextNode(user["password"])
+              );
 
-                        var login = document.createElement('td');
-                        login.appendChild(
-                            document.createTextNode(user["login"])
-                        );
+              tr.appendChild(login);
+              tr.appendChild(password);
 
-                        var password = document.createElement('td');
-                        password.appendChild(
-                            document.createTextNode(user["password"])
-                        );
-
-                        tr.appendChild(login);
-                        tr.appendChild(password);
-
-                        table.appendChild(tr);
-                    }
-                    message_div.firstChild.nodeValue = "";
-                } else {
-                    message_div.firstChild.nodeValue = "error";
-                }
+              table.appendChild(tr);
             }
+            message_div.firstChild.nodeValue = "";
+          })
         </script>
     </body>
 </html>
